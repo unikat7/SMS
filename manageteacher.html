@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<!---Coding By CodingLab | www.codinglabweb.com--->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!--<title>Registration Form in HTML CSS</title>-->
+    <!---Custom CSS File--->
+    <link rel="stylesheet" href="teacher.css"/>
+  </head>
+  <body>
+    <section class="container">
+      <header>Techer Registration</header>
+      <form action="teacher.php" class="form" method="POST">
+        <div class="input-box">
+          <label>Full Name</label>
+          <input type="text" name="fullname" placeholder="Enter full name" required />
+        </div>
+        <div class="input-box">
+          <label>Email Address</label>
+          <input type="email" name="email" placeholder="Enter email address" required />
+        </div>
+        <div class="input-box">
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter password" required />
+          </div>
+        <button name="create">create</button>
+      </form>
+    </section>
+  </body>
+</html>

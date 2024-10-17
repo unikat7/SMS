@@ -1,0 +1,22 @@
+<?php
+include'connection.php';
+if(!$connection){
+    die("failed");
+}
+else{
+    if(isset($_POST['create'])){
+        $fullname=$_POST['fullname'];
+        $email=$_POST['email'];
+        $password=$_POST['password'];
+        $hashed_password=password_hash($password,PASSWORD_DEFAULT);
+        $sql="insert into student(fullname,email,password) values('$fullname','$email','$hashed_password')";
+        $sql_data=mysqli_query($connection,$sql);
+        if($sql_data==1){
+            echo"inserted";
+        }
+        else{
+            echo"failed";
+        }
+    }
+}
+?>
