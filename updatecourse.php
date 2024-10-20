@@ -7,7 +7,6 @@ if (!$connection) {
 
 if (isset($_GET['code'])) {
     $code1 = $_GET['code'];
-    // Fetch course details for the selected code
     $sql = "SELECT * FROM course WHERE code='$code1'";
     $result = mysqli_query($connection, $sql);
     $course = mysqli_fetch_assoc($result);
@@ -27,15 +26,18 @@ if (isset($_GET['code'])) {
     <form action="" class="form" method="post">
         <div class="input-box">
             <label for="name">Course Name</label>
-            <input type="text" id="name" name="name" placeholder="Enter Course Name" value="<?= htmlspecialchars($course['name']) ?>" required />
+            <input type="text" id="name" name="name" placeholder="Enter Course Name" value="<?= isset($course['name']) ? htmlspecialchars($course['name']) : '' ?>" required />
+
+
         </div>
         <div class="input-box">
             <label for="code">Code</label>
-            <input type="text" id="code" name="code" placeholder="Enter Course Code" value="<?= htmlspecialchars($course['code']) ?>" required />
+            <input type="text" id="code" name="code" placeholder="Enter Course Code" value="<?= isset($course['code']) ? htmlspecialchars($course['code']) : '' ?>" required />
+
         </div>
         <div class="input-box">
             <label for="hours">Credit Hours</label>
-            <input type="number" id="hours" name="hours" placeholder="Enter Credit Hours" value="<?= htmlspecialchars($course['hours']) ?>" required />
+            <input type="number" id="hours" name="hours" placeholder="Enter Credit Hours" value="<?= isset($course['hours']) ? htmlspecialchars($course['hours']) : '' ?>" required />
         </div>
         <button type="submit" name="update">Update</button>
     </form>
@@ -51,22 +53,16 @@ if (!$connection) {
 
 if (isset($_POST['update'])) {
     $name = $_POST['name'];
-    $code = $_POST['code']; // New code from the form
+    $code = $_POST['code']; 
     $hours = $_POST['hours'];
-
-    // Fetch the original code to find the correct record
     $originalCode = $_GET['code'];
-
-    // Update the course details in the database
     $sql = "UPDATE course SET name='$name', code='$code', hours='$hours' WHERE code='$originalCode'";
-    
     $sql_data = mysqli_query($connection, $sql);
     
     if ($sql_data) {
-        header("Location:coursetable.php"); // Redirect after successful update
-        exit; // Ensure no further code is executed after the redirect
+        header("Location:coursetable.php"); 
     } else {
-        echo "Update failed: " . mysqli_error($connection);
+        echo "Update failed:";
     }
 }
 ?>

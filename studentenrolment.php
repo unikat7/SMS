@@ -31,8 +31,8 @@
           
         <div class="column">
             <div class="input-box">
-              <label>Session</label>
-              <input type="date" placeholder="Enter Session" required name="ses"/>
+              <label>Enrollment Year</label>
+              <input type="int" placeholder="Enter Year" required name="year"/>
             </div>
             <div class="column">
                 <div class="input-box">
@@ -55,9 +55,9 @@ else{
     $fullname=$_POST['fullname'];
     $email=$_POST['email'];
     $semester=$_POST['semester'];
-    $ses=$_POST['ses'];
+    $year=$_POST['year'];
     $rollno=$_POST['rollno'];
-    $insert="insert into studentreg(fullname,email,semester,sess,rollno)values('$fullname','$email',$semester,'$ses',$rollno)";
+    $insert="insert into studentreg(fullname,email,semester,enrollment_year,rollno)values('$fullname','$email',$semester,'$year',$rollno)";
     $studentdata=mysqli_query($connection,$insert);
     if($studentdata==1){
       echo"inserted";
