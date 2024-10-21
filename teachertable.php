@@ -137,6 +137,11 @@
         <div class="alert-success">Teacher record deleted successfully!</div>
     <?php endif; ?>
 
+    <!-- Display success message for update operation -->
+    <?php if (isset($_GET['update_success'])): ?>
+        <div class="alert-success">Teacher record updated successfully!</div>
+    <?php endif; ?>
+
     <table>
         <thead>
             <tr>
@@ -164,22 +169,17 @@
                 $fullname = $_POST['fullname'];
                 $newEmail = $_POST['email'];
 
-                // Debugging: Check form submission
-                echo "Updating teacher with old email: " . $oldEmail . "<br>";
-                echo "New Full Name: " . $fullname . "<br>";
-                echo "New Email: " . $newEmail . "<br>";
-
                 // Update query to change both fullname and email
                 $updateQuery = "UPDATE teacher SET fullname='$fullname', email='$newEmail' WHERE email='$oldEmail'";
+
                 if(mysqli_query($connection, $updateQuery)){
-                    echo "Record updated successfully!";
+                    // Success: Redirect to prevent form resubmission
+                    header("Location: ".$_SERVER['PHP_SELF']."?update_success=true");
+                    exit;
                 } else {
+                    // Error handling
                     echo "Error updating record: " . mysqli_error($connection);
                 }
-
-                // Redirect to prevent form resubmission
-                header("Location: ".$_SERVER['PHP_SELF']);
-                exit;
             }
 
             // Fetch and display teacher data
