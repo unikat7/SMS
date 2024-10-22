@@ -1,30 +1,28 @@
 <?php
-// connection.php should be included here for database connection
+
 include 'connection.php';
 
 if (isset($_POST['create'])) {
-    // Capture form data
+   
     $name = $_POST['name'];
     $code = $_POST['code'];
     $hours = $_POST['hours'];
     $semester = $_POST['semester'];
 
-    // Check if the course already exists
+   
     $check_sql = "SELECT * FROM course WHERE code='$code'";
     $check_result = mysqli_query($connection, $check_sql);
 
     if (mysqli_num_rows($check_result) > 0) {
-        // Course already exists
+       
         echo "<script>alert('Course with this code already exists!');</script>";
     } else {
-        // Insert new course if it doesn't exist
+        
         $insert_sql = "INSERT INTO course (name, code, hours, semester) VALUES ('$name', '$code', '$hours', '$semester')";
         
         if (mysqli_query($connection, $insert_sql)) {
             echo "<script>alert('Course created successfully!');</script>";
-            // Optionally redirect back to the form or another page
-            // header("Location: your_page.php"); 
-            // exit();
+           
         } else {
             echo "<script>alert('Error: " . mysqli_error($connection) . "');</script>";
         }
@@ -44,7 +42,7 @@ if (isset($_POST['create'])) {
 <body>
     <section class="container">
         <header>Course Creation</header>
-        <form action="course.php" class="form" method="post">
+        <form action="" class="form" method="post">
             <div class="input-box">
                 <label for="name">Course Name</label>
                 <input type="text" id="name" name="name" placeholder="Enter Course Name" required />

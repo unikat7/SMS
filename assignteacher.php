@@ -100,12 +100,12 @@
         </form>
 
         <?php
-        // Handle form submission
+       
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $teacher_email = $_POST['teacher_email'];
             $course_code = $_POST['course_code'];
 
-            // Insert into course_teacher table
+           
             $insert_query = "INSERT INTO course_teacher (teacher_email, course_code) VALUES ('$teacher_email', '$course_code')";
 
             if (mysqli_query($connection, $insert_query)) {

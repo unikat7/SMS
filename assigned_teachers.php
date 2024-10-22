@@ -1,12 +1,12 @@
 <?php
-include 'connection.php'; // Include your database connection
+include 'connection.php'; 
 
-// Handle form submission for deleting
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
     $delete_email = $_POST['teacher_email'];
     $delete_course_code = $_POST['course_code'];
 
-    // Delete from course_teacher table
+    
     $delete_query = "DELETE FROM course_teacher WHERE teacher_email = '$delete_email' AND course_code = '$delete_course_code'";
     
     if (mysqli_query($connection, $delete_query)) {
@@ -16,7 +16,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['delete'])) {
     }
 }
 
-// Fetch assigned teachers and courses
 $assigned_query = "SELECT ct.teacher_email, ct.course_code, c.name AS course_name 
                    FROM course_teacher ct 
                    JOIN course c ON ct.course_code = c.code";

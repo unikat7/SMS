@@ -132,12 +132,12 @@
 <body>
     <h2>Teacher Management</h2>
 
-    <!-- Display success message for delete operation -->
+    
     <?php if (isset($_GET['delete_success'])): ?>
         <div class="alert-success">Teacher record deleted successfully!</div>
     <?php endif; ?>
 
-    <!-- Display success message for update operation -->
+   
     <?php if (isset($_GET['update_success'])): ?>
         <div class="alert-success">Teacher record updated successfully!</div>
     <?php endif; ?>
@@ -154,7 +154,7 @@
             <?php
             include 'connection.php';
 
-            // Delete operation
+            
             if (isset($_GET['delete'])) {
                 $emailToDelete = $_GET['delete'];
                 $deleteQuery = "DELETE FROM teacher WHERE email = '$emailToDelete'";
@@ -163,26 +163,25 @@
                 exit;
             }
 
-            // Update operation
+           
             if (isset($_POST['update'])) {
                 $oldEmail = $_POST['old_email'];
                 $fullname = $_POST['fullname'];
                 $newEmail = $_POST['email'];
 
-                // Update query to change both fullname and email
                 $updateQuery = "UPDATE teacher SET fullname='$fullname', email='$newEmail' WHERE email='$oldEmail'";
 
                 if(mysqli_query($connection, $updateQuery)){
-                    // Success: Redirect to prevent form resubmission
+                    
                     header("Location: ".$_SERVER['PHP_SELF']."?update_success=true");
                     exit;
                 } else {
-                    // Error handling
+                  
                     echo "Error updating record: " . mysqli_error($connection);
                 }
             }
 
-            // Fetch and display teacher data
+       
             $sql = "SELECT * FROM teacher";
             $data = mysqli_query($connection, $sql);
             $row = mysqli_num_rows($data);
@@ -203,7 +202,6 @@
         </tbody>
     </table>
 
-    <!-- Update form displayed only if "update_form" is set -->
     <?php if (isset($_GET['update_form'])): 
         $emailToUpdate = $_GET['update_form'];
         $query = "SELECT * FROM teacher WHERE email='$emailToUpdate'";

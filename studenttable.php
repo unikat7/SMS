@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Management</title>
-    <!-- Bootstrap CSS -->
+ 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -48,12 +48,12 @@
                     $updateQuery = "UPDATE studentreg SET fullname='$fullname', email='$email', semester='$semester', enrollment_year='$enrollment_year' WHERE rollno='$rollnoToUpdate'";
                     mysqli_query($connection, $updateQuery);
 
-                    // Redirect to prevent the form from showing again
+              
                     header("Location: ".$_SERVER['PHP_SELF']);
                     exit;
                 }
 
-                // Fetch and display data
+             
                 $sql = "SELECT * FROM studentreg";
                 $data = mysqli_query($connection, $sql);
                 $row = mysqli_num_rows($data);
@@ -78,7 +78,7 @@
             </tbody>
         </table>
 
-        <!-- Update form, displayed only if "update_form" is set -->
+       
         <?php if (isset($_GET['update_form'])): 
             $rollnoToUpdate = $_GET['update_form'];
             $query = "SELECT * FROM studentreg WHERE rollno='$rollnoToUpdate'";
@@ -113,7 +113,6 @@
         <?php endif; ?>
     </div>
 
-    <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

@@ -66,11 +66,13 @@ $courses_count = mysqli_fetch_assoc(mysqli_query($connection, $courses_count_que
         <!-- Sidebar -->
         <div class="sidebar">
             <h2>Admin Panel</h2>
-            <a href="course.html">Create Course</a>
+            <a href="coursecreation.php">Create Course</a>
             <a href="coursetable.php">View Courses</a>
-            <a href="manageteacher.html">Create Teacher</a>
+            <a href="manageteacher.php">Create Teacher</a>
             <a href="teachertable.php">View Teachers</a>
             <a href="studentenrolment.php">Create Student</a>
+            <a href="assignteacher.php">Assign Teacher</a>
+
             <a href="studenttable.php">View Students</a>
         </div>
 
