@@ -40,6 +40,7 @@ if (isset($_POST['create'])) {
     <title>Course Creation</title>
 </head>
 <body>
+    
     <section class="container">
         <header>Course Creation</header>
         <form action="" class="form" method="post">

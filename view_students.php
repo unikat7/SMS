@@ -67,9 +67,7 @@
                         echo "<td>" . $result['enrollment_year'] . "</td>";
                         echo "<td>" . $result['rollno'] . "</td>";
                         echo "<td>
-                        <a href='?delete=" . $result['rollno'] . "' class='btn btn-danger btn-sm' onclick=\"return confirm('Are you sure you want to delete this record?');\">Delete</a>
-                        <a href='?update_form=" . $result['rollno'] . "' class='btn btn-primary btn-sm'>Update</a> 
-                        <a href='view_marks.php?rollno=" . $result['rollno'] . "&semester=" . $result['semester'] . "&fullname=" . $result['fullname'] . "' class='btn btn-success btn-sm'>View Marks</a>
+                        <a href='assign_marks.php?rollno=" . $result['rollno'] . "&semester=" . $result['semester'] . "&fullname=" . $result['fullname'] . "' class='btn btn-success btn-sm'>Assign Marks</a>
                         </td>";
                         echo "</tr>";
                     }
@@ -77,42 +75,3 @@
                 ?>
             </tbody>
         </table>
-
-       
-        <?php if (isset($_GET['update_form'])): 
-            $rollnoToUpdate = $_GET['update_form'];
-            $query = "SELECT * FROM studentreg WHERE rollno='$rollnoToUpdate'";
-            $result = mysqli_query($connection, $query);
-            $studentData = mysqli_fetch_assoc($result);
-        ?>
-        <div class="card mt-5">
-            <div class="card-header bg-primary text-white">Update Student Information</div>
-            <div class="card-body">
-                <form method="POST" action="">
-                    <input type="hidden" name="rollno" value="<?php echo $studentData['rollno']; ?>">
-                    <div class="mb-3">
-                        <label class="form-label">Full Name</label>
-                        <input type="text" name="fullname" class="form-control" value="<?php echo $studentData['fullname']; ?>" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Email</label>
-                        <input type="email" name="email" class="form-control" value="<?php echo $studentData['email']; ?>" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Semester</label>
-                        <input type="text" name="semester" class="form-control" value="<?php echo $studentData['semester']; ?>" required>
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Enrollment Year</label>
-                        <input type="text" name="enrollment_year" class="form-control" value="<?php echo $studentData['enrollment_year']; ?>" required>
-                    </div>
-                    <button type="submit" name="update" class="btn btn-success">Update</button>
-                </form>
-            </div>
-        </div>
-        <?php endif; ?>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>

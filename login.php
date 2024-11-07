@@ -5,52 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Management System - Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
-    <style>
-        body {
-            background-image: url('https://www.transparenttextures.com/patterns/fabric-light.png'); 
-            background-color: #f0f4f8;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .login-container {
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            padding: 30px;
-            width: 400px;
-        }
-
-        .login-header {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #2c3e50; 
-        }
-
-        .error {
-            color: red;
-            text-align: center;
-            margin-top: 10px;
-        }
-
-        .btn-custom {
-            background-color: #007bff;
-            color: white;
-        }
-
-        .btn-custom:hover {
-            background-color: #0056b3; 
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 0.8em;
-            color: #7f8c8d;
-        }
-    </style>
+    <link rel="stylesheet" href="login.css">
 </head>
 <body>
     <div class="login-container">
@@ -81,9 +36,9 @@
         include 'connection.php';
 
         if (isset($_POST['login'])) {
-            $email = $_POST['email'];
-            $password = $_POST['password'];
-            $role = $_POST['role'];
+            $email = mysqli_real_escape_string($connection, $_POST['email']);
+            $password = mysqli_real_escape_string($connection, $_POST['password']);
+            $role = mysqli_real_escape_string($connection, $_POST['role']);
 
             if ($role == 'admin') {
                 $query = "SELECT * FROM admin WHERE email='$email'";
@@ -104,6 +59,7 @@
                     if ($role == 'admin') {
                         header("Location: admin_dashboard.php");
                     } elseif ($role == 'teacher') {
+                        $_SESSION['teacher_email'] = $email;
                         header("Location: teacherdashboard.php");
                     } elseif ($role == 'student') {
                         header("Location: studentdashboard.php");
@@ -116,6 +72,7 @@
             }
         }
         ?>
+
         <div class="footer">
             &copy; <?php echo date("Y"); ?> Student Management System
         </div>

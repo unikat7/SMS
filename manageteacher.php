@@ -26,9 +26,8 @@
       </form>
     </section>
 
-    <!-- PHP Code for Teacher Registration -->
     <?php
-    include 'connection.php'; // Include your database connection
+    include 'connection.php'; 
 
     if (!$connection) {
       die("Connection failed");
@@ -38,15 +37,14 @@
         $email = $_POST['email'];
         $password = $_POST['password'];
 
-        // Check if a teacher with the same email already exists
+        
         $check_teacher = "SELECT * FROM teacher WHERE email = '$email'";
         $result = mysqli_query($connection, $check_teacher);
 
         if (mysqli_num_rows($result) > 0) {
-          // If a teacher with this email already exists
+          
           echo "<p style='color: red; text-align: center;'>Teacher with email $email already exists!</p>";
         } else {
-          // Proceed with inserting a new teacher
           $hashed_password = password_hash($password, PASSWORD_DEFAULT);
           $sql = "INSERT INTO teacher (fullname, email, password) VALUES ('$fullname', '$email', '$hashed_password')";
           $sql_data = mysqli_query($connection, $sql);

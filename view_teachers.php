@@ -51,7 +51,7 @@
 </head>
 <body>
     <div class="container">
-        <h2>Assigned Teachers</h2>
+        
         <table>
             <thead>
                 <tr>
@@ -62,9 +62,9 @@
             </thead>
             <tbody>
                 <?php
-                include 'connection.php'; // Include database connection
+                include 'connection.php'; 
 
-                // Fetch assigned teachers and their corresponding courses
+               
                 $query = "SELECT course_teacher.teacher_email, course.code, course.name 
                           FROM course_teacher 
                           JOIN course ON course_teacher.course_code = course.code";
@@ -85,7 +85,7 @@
                 ?>
             </tbody>
         </table>
-        <a href="assignteacher.php">Back to Assign Teacher</a>
+      
     </div>
 </body>
 </html>
