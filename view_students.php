@@ -29,7 +29,7 @@
                     die("Connection failed");
                 }
 
-                // Delete operation
+                
                 if (isset($_GET['delete'])) {
                     $rollnoToDelete = $_GET['delete'];
                     $deleteQuery = "DELETE FROM studentreg WHERE rollno = '$rollnoToDelete'";
@@ -37,7 +37,6 @@
                     echo "<div class='alert alert-success'>Record deleted successfully</div>";
                 }
 
-                // Update operation
                 if (isset($_POST['update'])) {
                     $rollnoToUpdate = $_POST['rollno'];
                     $fullname = $_POST['fullname'];

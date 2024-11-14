@@ -13,14 +13,15 @@ $students_count = mysqli_fetch_assoc(mysqli_query($connection, $students_count_q
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="teacherdashboard.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Teacher Dashboard</title>
+   
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Teacher Dashboard</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,13 +40,13 @@ $students_count = mysqli_fetch_assoc(mysqli_query($connection, $students_count_q
         </div>
     </nav>
 
-<div class="teacher-panel">
-    <div class="sidebar">
-    <h2>Teacher Panel</h2>
-    <a href="view_courses.php"><i class="fas fa-book-open"></i> View Courses</a>
-    <a href="view_students.php"><i class="fas fa-users"></i> View Students</a>
-    <a href="assign_marks.php"><i class="fas fa-marker"></i> Assign Marks</a>
-   </div>
+    <div class="admin-panel">
+        <div class="sidebar">
+            <h2>Teacher Panel</h2>
+            <a href="view_courses.php"><i class="fas fa-book-open"></i> View Courses</a>
+            <a href="view_students.php"><i class="fas fa-users"></i> View Students</a>
+            <a href="assign_marks.php"><i class="fas fa-marker"></i> Assign Marks</a>
+        </div>
 
         <div class="content">
             <h1 class="teacher-title">Dashboard</h1>

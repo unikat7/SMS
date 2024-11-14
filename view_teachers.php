@@ -71,7 +71,7 @@
                 $result = mysqli_query($connection, $query);
 
                 if (mysqli_num_rows($result) > 0) {
-                    // Output data for each row
+                  
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<tr>
                                 <td>" . htmlspecialchars($row['teacher_email']) . "</td>

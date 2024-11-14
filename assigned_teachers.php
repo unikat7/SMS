@@ -62,16 +62,15 @@
             </thead>
             <tbody>
                 <?php
-                include 'connection.php'; // Include database connection
+                include 'connection.php'; 
 
-                // Fetch assigned teachers and their corresponding courses
                 $query = "SELECT course_teacher.teacher_email, course.code, course.name 
                           FROM course_teacher 
                           JOIN course ON course_teacher.course_code = course.code";
                 $result = mysqli_query($connection, $query);
 
                 if (mysqli_num_rows($result) > 0) {
-                    // Output data for each row
+                   
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo "<tr>
                                 <td>" . htmlspecialchars($row['teacher_email']) . "</td>
