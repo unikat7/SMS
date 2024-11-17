@@ -8,10 +8,9 @@
     <link rel="stylesheet" href="studentenrollment.css" />
   </head>
   <body>
+   
     <section class="container">
       <header>Student Enrollment Form</header>
-      
-    
       <form action="" class="form" method="post">
         <div class="input-box">
           <label>Full Name</label>

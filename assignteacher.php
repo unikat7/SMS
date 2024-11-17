@@ -3,73 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Assign Teacher to Course</title>
-    <link rel="stylesheet" href="teacher.css"> 
+    <link rel="stylesheet" href="navbar.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="teacher.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            color: #555;
-        }
-
-        select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 15px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 16px;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        a {
-            display: block;
-            text-align: center;
-            margin-top: 10px;
-            color: #4CAF50;
-        }
     </style>
 </head>
 <body>
-    <div class="container">
+    <?php
+    include 'navbar.php';
+    ?>
+    <div class="content">
         <h2>Assign Teacher to Course</h2>
         <form action="" method="post">
             <div class="form-group">
@@ -95,8 +42,11 @@
                     ?>
                 </select>
             </div>
-            <button type="submit">Assign</button>
-            <a href="assigned_teachers.php">View Assigned Teachers</a>
+            <button id="assignBtn" type="submit">Assign</button><br>
+            <div id="assigned">
+
+                <a id="assigned" target="_blank" href="assigned_teachers.php">View Assigned Teachers</a>
+            </div>
         </form>
 
         <?php

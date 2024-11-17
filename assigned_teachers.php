@@ -4,52 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Assigned Teachers</title>
-    <link rel="stylesheet" href="teacher.css">
     <style>
-        body {
+       body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
+            background-color: #f3f4f6;
             margin: 0;
-            padding: 20px;
         }
-
+        .content{
+            flex: 1;
+            padding: 20px;
+            background-color: #f3f4f6;
+            margin-left: 250px;
+        }
+        .admin-title {
+            color: #334e68;
+            font-size: 26px;
+            font-weight: bold;
+        }
         .container {
-            max-width: 800px;
+            max-width: 600px;
             margin: auto;
-            background: white;
+            background: #fff;
             padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
-
-        h2 {
+        header {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4A90E2;
             text-align: center;
-            color: #333;
+            margin-bottom: 20px;
         }
-
-        table {
+        .input-box {
+            margin-bottom: 15px;
+        }
+        .input-box label {
+            font-weight: bold;
+            color: #334e68;
+        }
+        .input-box input {
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
             padding: 8px;
-            text-align: left;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 5px;
         }
-
-        th {
-            background-color: #4CAF50;
-            color: white;
+        button {
+            background-color: #4A90E2;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
         }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
+        button:hover {
+            background-color: #357abD;
+        }
+        p {
+            text-align: center;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
+    
     <div class="container">
         <h2>Assigned Teachers</h2>
         <table>

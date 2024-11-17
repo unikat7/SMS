@@ -80,6 +80,7 @@
     </style>
 </head>
 <body>
+  
 
 <h2>Course Management</h2>
 <table>
