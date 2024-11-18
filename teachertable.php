@@ -33,10 +33,12 @@ if (isset($_GET['delete'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher Management</title>
+    <link rel="stylesheet" href="navbar.css">
     <style>
     </style>
 </head>
 <body>
+
   
     <h2>Teacher Management</h2>
     <table>

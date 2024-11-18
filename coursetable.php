@@ -3,18 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Course Management</title>
+    <link rel="stylesheet" href="navbar.css">
     <style>
     </style>
 </head>
 <body>
 
 <?php
-include'navbar.php';
+include 'navbar.php';
+include 'connection.php';
 
+if (isset($_POST['update_course'])) {
+    $old_code = $_POST['old_code'];
+    $course_name = $_POST['course_name'];
+    $credit_hours = $_POST['credit_hours'];
+    $semester = $_POST['semester'];
+
+    $update_sql = "UPDATE course SET name='$course_name', hours='$credit_hours', semester='$semester' WHERE code='$old_code'";
+    if (mysqli_query($connection, $update_sql)) {
+        echo "<script>alert('Course updated successfully'); window.location.href='".$_SERVER['PHP_SELF']."';</script>";
+    } else {
+        echo "<script>alert('Error updating course: ".mysqli_error($connection)."');</script>";
+    }
+}
+
+
+if (isset($_POST['delete_course'])) {
+    $code = $_POST['code_course'];
+
+   
+    $check_teacher_sql = "SELECT * FROM course_teacher WHERE course_code = '$code'";
+    $check_result = mysqli_query($connection, $check_teacher_sql);
+
+    if (mysqli_num_rows($check_result) > 0) {
+    
+        echo "<script>alert('Cannot delete course. A teacher is assigned to this course.'); window.location.href='".$_SERVER['PHP_SELF']."';</script>";
+    } else {
+     
+        $delete_sql = "DELETE FROM course WHERE code='$code'";
+        if (mysqli_query($connection, $delete_sql)) {
+            echo "<script>alert('Course deleted successfully'); window.location.href='".$_SERVER['PHP_SELF']."';</script>";
+        } else {
+            echo "<script>alert('Error deleting course: ".mysqli_error($connection)."');</script>";
+        }
+    }
+}
 ?>
 
 <div class="content">
@@ -31,16 +67,6 @@ include'navbar.php';
         </thead>
         <tbody>
             <?php
-            include 'connection.php';
-
-            if (isset($_POST['delete_course'])) {
-                $code = $_POST['code_course'];
-                $delete_sql = "DELETE FROM course WHERE code='$code'";
-                mysqli_query($connection, $delete_sql);
-                header("Location: ".$_SERVER['PHP_SELF']); 
-                exit();
-            }
-
             $sql = "SELECT * FROM course";
             $data = mysqli_query($connection, $sql);
             if (mysqli_num_rows($data) > 0) {
@@ -68,7 +94,7 @@ include'navbar.php';
 </div>
 
 <!-- Modal for updating course -->
-<div id="courseModal" class="modal">
+<div id="courseModal" class="modal" style="display:none;">
     <div class="modal-header">
         <h4>Update Course</h4>
     </div>
@@ -98,7 +124,6 @@ include'navbar.php';
 <div id="modalOverlay" class="modal-overlay" onclick="closeModal()"></div>
 
 <script>
- 
     function openModal(code, name, hours, semester) {
         document.getElementById('old_code').value = code;
         document.getElementById('course_name').value = name;
@@ -109,29 +134,11 @@ include'navbar.php';
         document.getElementById('modalOverlay').style.display = 'block';
     }
 
-    // Close modal
     function closeModal() {
         document.getElementById('courseModal').style.display = 'none';
         document.getElementById('modalOverlay').style.display = 'none';
     }
 </script>
-
-<?php
-// Handle course update
-if (isset($_POST['update_course'])) {
-    $old_code = $_POST['old_code'];
-    $course_name = $_POST['course_name'];
-    $credit_hours = $_POST['credit_hours'];
-    $semester = $_POST['semester'];
-
-    $update_sql = "UPDATE course SET name='$course_name', hours='$credit_hours', semester='$semester' WHERE code='$old_code'";
-    if (mysqli_query($connection, $update_sql)) {
-        echo "<script>alert('Course updated successfully'); window.location.href='".$_SERVER['PHP_SELF']."';</script>";
-    } else {
-        echo "<script>alert('Error updating course: ".mysqli_error($connection)."');</script>";
-    }
-}
-?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

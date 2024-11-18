@@ -1,6 +1,14 @@
 <?php
 include 'connection.php';
 
+session_start(); 
+
+if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'teacher') {
+ 
+    header("Location: login.php");
+    exit(); 
+}
+
 $courses_count_query = "SELECT COUNT(*) as count FROM course";
 $students_count_query = "SELECT COUNT(*) as count FROM studentreg";
 
@@ -44,8 +52,7 @@ $students_count = mysqli_fetch_assoc(mysqli_query($connection, $students_count_q
         <div class="sidebar">
             <h2>Teacher Panel</h2>
             <a href="view_courses.php"><i class="fas fa-book-open"></i> View Courses</a>
-            <a href="view_students.php"><i class="fas fa-users"></i> View Students</a>
-            <a href="assign_marks.php"><i class="fas fa-marker"></i> Assign Marks</a>
+            <a href="view_students.php"><i class="fas fa-users"></i> View Students and assign marks</a>
         </div>
 
         <div class="content">

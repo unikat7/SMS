@@ -12,8 +12,7 @@
     <?php
     include 'navbar.php';
     ?>
-
-    <div class="container arkoContainer">
+    <div class="container">
         <h2 style="text-align: center;">Student Management System</h2>
         <table border="1" cellpadding="10" cellspacing="0" style="width: 100%; margin-top: 20px;">
             <thead>
