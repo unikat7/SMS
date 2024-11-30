@@ -8,11 +8,9 @@ if (isset($_GET['rollno']) && isset($_GET['semester'])) {
     $rollno = $_GET['rollno'];
     $semester = $_GET['semester'];
 
-    // Fetch all subjects for this semester
     $all_subjects_sql = "SELECT code, name FROM course WHERE semester = '$semester'";
     $all_subjects_result = mysqli_query($connection, $all_subjects_sql);
     
-    // Fetch subjects assigned to this teacher in the given semester
     $teacher_subjects_sql = "SELECT course.code FROM course_teacher 
                              JOIN course ON course_teacher.course_code = course.code 
                              WHERE course_teacher.teacher_email = '$teacher_email'
@@ -24,13 +22,13 @@ if (isset($_GET['rollno']) && isset($_GET['semester'])) {
         $teacher_subjects[] = $row['code'];
     }
 
-    // Fetch student details for this rollno and semester
+    
     $student_sql = "SELECT * FROM studentreg WHERE rollno='$rollno' AND semester='$semester'";
     $student_result = mysqli_query($connection, $student_sql);
     $student = mysqli_fetch_assoc($student_result);
     $student_id = $student['s_id'];
 
-    // Fetch existing marks for the student in the current semester
+ 
     $existing_marks_sql = "SELECT course_code, marks FROM marks WHERE rollno='$rollno' AND semester='$semester'";
     $existing_marks_result = mysqli_query($connection, $existing_marks_sql);
 
@@ -44,13 +42,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     foreach ($_POST['marks'] as $course_code => $mark) {
         if (in_array($course_code, $teacher_subjects)) {
             if (isset($existing_marks[$course_code])) {
-                // Update marks if already exist for the student and course
+               
                 $update_marks_sql = "UPDATE marks SET marks='$mark' 
                                      WHERE rollno='$rollno' AND semester='$semester' AND course_code='$course_code'";
                 mysqli_query($connection, $update_marks_sql);
                 echo "<p style='color: green;'>Marks updated successfully for $course_code!</p>";
             } else {
-                // Insert marks if not exist for the student and course
+              
                 $insert_marks_sql = "INSERT INTO marks (rollno, semester, course_code, teacher_email, marks) 
                                      VALUES ('$rollno', '$semester', '$course_code', '$teacher_email', '$mark')";
                 mysqli_query($connection, $insert_marks_sql);
