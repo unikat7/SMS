@@ -10,9 +10,6 @@
     
 </head>
 <body>
-    <?php
-    include 'navbar.php';
-    ?>
             <header>Teacher Registration</header>
             <form action="" method="POST">
                 <div class="input-box">

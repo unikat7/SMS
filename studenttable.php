@@ -29,8 +29,6 @@
                 if (!$connection) {
                     die("Connection failed");
                 }
-
-                // Deleting Record
                 if (isset($_GET['delete'])) {
                     $studentIdToDelete = $_GET['delete'];
                     $deleteQuery = "DELETE FROM studentreg WHERE s_id = '$studentIdToDelete'";
@@ -38,7 +36,6 @@
                     echo "<div>Record deleted successfully</div>";
                 }
 
-                // Updating Record
                 if (isset($_POST['update'])) {
                     $studentId = $_POST['student_id'];
                     $fullname = $_POST['fullname'];
@@ -50,7 +47,7 @@
                     exit;
                 }
 
-                // Fetching and displaying records
+                
                 $sql = "SELECT * FROM studentreg";
                 $data = mysqli_query($connection, $sql);
                 if (mysqli_num_rows($data) > 0) {
@@ -70,7 +67,7 @@
             </tbody>
         </table>
 
-        <!-- Update Modal -->
+       
         <div id="updateModal" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 400px; background-color: #fff; padding: 20px; border: 1px solid #ddd; box-shadow: 0 2px 5px rgba(0,0,0,0.3);">
             <h3>Update Student Information</h3>
             <form method="POST" action="">

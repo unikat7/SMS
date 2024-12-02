@@ -10,7 +10,14 @@ if (!isset($_SESSION['email']) || $_SESSION['role'] !== 'student') {
 $email = $_SESSION['email'];
 $student_sql = "SELECT fullname, rollno, semester FROM studentreg WHERE email='$email'";
 $student_result = mysqli_query($connection, $student_sql);
+
+// Ensure student record is found
 $student = mysqli_fetch_assoc($student_result);
+if (!$student) {
+    echo "Student record not found.";
+    exit;
+}
+
 $rollno = $student['rollno'];
 $semester = $student['semester'];
 
@@ -26,7 +33,7 @@ while ($course = mysqli_fetch_assoc($course_result)) {
     $marks_result = mysqli_query($connection, $marks_sql);
     $marks = mysqli_fetch_assoc($marks_result);
 
-    if ($marks && $marks['marks'] > 0) {
+    if ($marks && isset($marks['marks']) && $marks['marks'] > 0) {
         $total_marks += $marks['marks'];
     } else {
         $missing_marks = true;
@@ -72,6 +79,7 @@ if ($total_courses > 0 && !$missing_marks) {
             </thead>
             <tbody>
                 <?php
+                // Reset the course result pointer to loop through again
                 mysqli_data_seek($course_result, 0);
                 while ($course = mysqli_fetch_assoc($course_result)):
                     $marks_sql = "SELECT m.marks FROM marks m WHERE m.rollno='$rollno' AND m.semester='$semester' AND m.course_code='".$course['course_code']."'";
@@ -80,7 +88,7 @@ if ($total_courses > 0 && !$missing_marks) {
                 ?>
                     <tr>
                         <td><?php echo htmlspecialchars($course['course_name']); ?></td>
-                        <td><?php echo $marks ? htmlspecialchars($marks['marks']) : 'Not Assigned'; ?></td>
+                        <td><?php echo ($marks && isset($marks['marks'])) ? htmlspecialchars($marks['marks']) : 'Not Assigned'; ?></td>
                     </tr>
                 <?php endwhile; ?>
             </tbody>

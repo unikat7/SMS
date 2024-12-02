@@ -30,6 +30,5 @@
             <a href="assignteacher.php"><i class="fas fa-user-tag"></i> Assign Teacher</a>
             <a href="studenttable.php"><i class="fas fa-users"></i> View Students</a>
             <a href="studentloginprocess.php"><i class="fas fa-user-plus"></i>Create Student Account</a>
-
         </div>
 </div>
