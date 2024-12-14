@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="studentenrollment.css" />
   </head>
   <body>
+    
    
     <section class="container">
       <header>Student Enrollment Form</header>

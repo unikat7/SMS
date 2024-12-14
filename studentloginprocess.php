@@ -4,13 +4,12 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-
-    <link rel="stylesheet" href="navbar.css" />
+    <link rel="stylesheet" href="studentlogin.css" />
   </head>
   <body>
-    <?php
-    // include 'navbar.php';
-    ?>
+    <!-- <?php
+    include 'navbar.php';
+    ?> -->
     <section class="container">
       <header>Create Student Login</header>
       <form action="" class="form" method="post">
@@ -42,6 +41,7 @@
         </div>
 
         <button name="create">Create Account</button>
+        
       </form>
     </section>
   </body>
@@ -66,7 +66,7 @@ if (isset($_POST['create'])) {
 
     if (mysqli_num_rows($result_login) > 0) {
       
-      echo "<p style='color: red; text-align: center;'>Account already exists for $fullname!</p>";
+      echo "<script>alert('Account already exists for $fullname!');</script>";
     } else {
      
       $insert_login = "INSERT INTO student (fullname, email, password) VALUES ('$fullname', '$email', '$password')";

@@ -29,6 +29,8 @@
                 </select>
             </div>
             <button type="submit" name="login" class="btn btn-custom btn-block">Login</button>
+<a href="forgot_password.php" class="btn btn-link btn-block">Forgot Password?</a>
+
         </form>
 
         <?php
